@@ -1,3 +1,4 @@
+from collections import Counter
 def read_input_file(filename):
     left_list = []
     right_list = []
@@ -38,10 +39,25 @@ def calculate_total_distance(left_list, right_list):
 
     return total_distance
 
+# Part Two of Day 1 calculating the similarity score 
 
-# Example usage
+def calculate_similarity_score(left_list, right_list):
+    # Count occurrences of each number in the right list
+    right_count = Counter(right_list)
+    
+    # Calculate the similarity score
+    similarity_score = 0
+    for num in left_list:
+        similarity_score += num * right_count[num]
+    
+    return similarity_score
+
 filename = 'input.txt'
 left_list, right_list = read_input_file(filename)
 # Calculate and print the total distance
 total_distance = calculate_total_distance(left_list, right_list)
 print("Puzzle solution 🌚:", total_distance)
+
+# Calculate and print the similarity score
+similarity_score = calculate_similarity_score(left_list, right_list)
+print("Similarity Score:", similarity_score)
